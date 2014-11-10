@@ -1,0 +1,348 @@
+// song kick api key 10OFM6NGN2sk4MA7
+// artist http://api.songkick.com/api/3.0/artists/{artist_id}/calendar.json?apikey={your_api_key}
+// metro area http://api.songkick.com/api/3.0/metro_areas/{metro_area_id}/calendar.json?apikey={your_api_key}
+// pulls all portland concerts: http://api.songkick.com/api/3.0/metro_areas/24590/calendar.json?apikey=10OFM6NGN2sk4MA7
+
+// TODO: 
+// 1. add in day of week
+// 2. if day is today display "today"
+// 3. link title to something -> COMPLETE
+// 4. add in filters for each venue -> COMPLETE 
+// 5. add in powered by songkick footer -> COMPLETE
+// 6. figure out how to add shows to the array -> COMPLETE
+// 7. add in share buttons
+// 8. buy domain
+// 9. launch it
+// 10. tell people about it
+// 11. link location to google map search
+
+// create an empty array for the events
+var eventArray = {},
+    eventsArray = [],
+    hamburger = $('#hamburger-icon'),
+    navItem = $('nav ul a'),
+    i = 0,
+    topTarget = $('#events-wrapper').offset().top,
+    bodyHeight = $('body').height();
+    
+    console.log("top is " + topTarget);
+    
+var scrollToTarget = function(target, animation, distanceFromTop) {
+
+    $("html, body").bind("scroll mousedown DOMMouseScroll mousewheel keyup", function() {
+        $('html, body').stop();
+    });
+
+
+    $('html,body').animate({
+        scrollTop: target - distanceFromTop
+    }, 1000, animation, function() {
+        $("html, body").unbind("scroll mousedown DOMMouseScroll mousewheel keyup");
+    });
+
+};
+
+
+$('a.scroll-to-top').click(function(){
+	scrollToTarget(0, "easeOutQuint", 0);
+	return false;
+});
+
+
+navItem.click(function(){
+
+	navName = $(this).attr("data-name"),
+	console.log(navName);
+	
+	hamburger.toggleClass('active');
+	$('nav').toggleClass('active');
+	
+	// deal with active classes
+	$('nav ul a.active').removeClass('active');
+	$(this).toggleClass('active');
+	
+	$('#events-wrapper').html(' ');
+	
+	// sort the array based on the nav item selected
+	
+	if (navName == "about") {
+		
+		console.log('about');
+		$('#events-wrapper').html('<div class = "row"><div class = "small-12 large-12 columns"><p>Made with love in Portland, Maine</p></div></div>');
+		
+	} else {
+		
+		eventsArray.sort(dynamicSort(navName));
+		console.log('doesnt equal about');
+		
+		
+		for (i=0; i < eventsArray.length; i++) {
+			console.log('for loop is running this ones that the op');
+			$("#events-wrapper").append(
+			    '<div class = "row">' +
+			        '<div class = "small-12 large-12 columns">' +
+			            '<p class = "date">' + eventsArray[i].date + '</p>' +
+						'<h1 class = "title"><a href = "' + eventsArray[i].purchaseUrl + '" target = "_blank">' + eventsArray[i].artist + '</a></h1>' +
+			            '<p> <span class = "location">' + eventsArray[i].location + '</span> | <span class = "time">' + eventsArray[i].time + '</span></p>' +
+			            '<button class = "buyTix"><a href = "' + eventsArray[i].purchaseUrl + '" target = "_blank">Buy Tix</a></button>' +
+			            '<button class = "youTube"><a href = "https://www.youtube.com/results?search_query=' + eventsArray[i].youTubeQuery + '" target="_blank">View YouTube</a></button>' +
+			        '</div>' +
+			    '</div>'
+			);
+		}
+		
+		
+	}
+	
+	
+
+	scrollToTarget(topTarget, "easeOutQuint", bodyHeight);
+	
+	return false;
+});
+    
+    
+    
+hamburger.click(function() {
+ hamburger.toggleClass('active');
+ $('nav').toggleClass('active');
+ return false;
+});
+
+
+// sort the eventsArray
+function dynamicSort(property) {
+    var sortOrder = 1;
+    if (property[0] === "-") {
+        sortOrder = -1;
+        property = property.substr(1);
+    }
+    return function(a, b) {
+        var result = (a[property] < b[property]) ? -1 : (a[property] > b[property]) ? 1 : 0;
+        return result * sortOrder;
+    }
+}
+
+
+// start json call	  
+$.getJSON("http://api.songkick.com/api/3.0/metro_areas/24590/calendar.json?apikey=10OFM6NGN2sk4MA7&jsoncallback=?", function(data) {
+
+    $.each(data["resultsPage"]["results"]["event"], function(i) {
+
+        // create an object with all the info from the api that we want to use
+        eventArray = {
+            date: data["resultsPage"]["results"]["event"][i]["start"]["date"],
+            youTubeQuery: data["resultsPage"]["results"]["event"][i]["performance"][0]["artist"]["displayName"],
+            artist: data["resultsPage"]["results"]["event"][i]["performance"][0]["artist"]["displayName"],
+            location: data["resultsPage"]["results"]["event"][i]["venue"]["displayName"],
+            time: data["resultsPage"]["results"]["event"][i]["start"]["time"],
+            purchaseUrl: data["resultsPage"]["results"]["event"][i]["uri"]
+        };
+
+        // push that object into an array so we can play with them as a whole
+        eventsArray.push(eventArray);
+
+    }); // end each
+
+
+    // add in new events to the eventsArray here		
+    eventsArray.push(eventArray = {
+        date: "2014-07-16",
+        youTubeQuery: "test",
+        artist: "test artist",
+        location: "test",
+        time: "test",
+        purchaseUrl: "test"
+    }); // END add in new events 	
+
+
+    
+    eventsArray.sort(dynamicSort("date"));
+    // end sorting
+
+	// call the function that displays the data
+	callEventsArray();
+	
+	$('.loader').fadeOut('slow');
+
+}).fail(function() {
+    console.log("error");
+}); // end jsonp call
+	
+	
+
+
+
+// function to display all the data on the page
+var callEventsArray = function() {
+	console.log('callEventsArray has fired')
+	console.log(eventsArray);
+    // START loop through all objects and display them on the page	
+    // looop through each of the objects in the events array
+    for (var i = 0; i < eventsArray.length; i++) {
+		console.log('for loop is running');
+        // convert time and date
+        if (eventsArray[i].time !== null) {
+            var parts = eventsArray[i].time.split(':'),
+                hour = parts[0],
+                minutes = parts[1];
+
+            if (hour > 12) {
+                eventsArray[i].time = (hour - 12) + ':' + minutes + ' pm';
+            } else if (hour === 0) {
+                eventsArray[i].time = 12 + ':' + minutes + ' am';
+            } else if (hour == 12) {
+                eventsArray[i].time += ' pm';
+            } else {
+                eventsArray[i].time += ' am';
+            }
+        }
+
+        if (eventsArray[i].date !== null) {
+            var dateParts = eventsArray[i].date.split("-"),
+                year = dateParts[0],
+                month = dateParts[1],
+                day = dateParts[2];
+
+            if (month == 01) {
+                month = "January"
+            }
+            if (month == 02) {
+                month = "February"
+            }
+            if (month == 03) {
+                month = "March"
+            }
+            if (month == 04) {
+                month = "April"
+            }
+            if (month == 05) {
+                month = "May"
+            }
+            if (month == 06) {
+                month = "June"
+            }
+            if (month == 07) {
+                month = "July"
+            }
+            if (month == 08) {
+                month = "August"
+            }
+            if (month == 09) {
+                month = "September"
+            }
+            if (month == 10) {
+                month = "October"
+            }
+            if (month == 11) {
+                month = "November"
+            }
+            if (month == 12) {
+                month = "December"
+            }
+
+            var todaysFullDate = new Date(), // ex: Mon Jul 14 2014 16:08:00 GMT-0400 (EDT) 
+                todaysDateNumber = todaysFullDate.getDate(), // ex: 14
+                todaysDay = todaysFullDate.getDay(), // ex: 1
+                eventDay = "test",
+                weekday = new Array(7);
+
+            weekday[0] = "Sunday";
+            weekday[1] = "Monday";
+            weekday[2] = "Tuesday";
+            weekday[3] = "Wednesday";
+            weekday[4] = "Thursday";
+            weekday[5] = "Friday";
+            weekday[6] = "Saturday";
+            
+           
+            if (todaysDateNumber == day) {
+	            eventsArray[i].date = "Tonight";
+	            
+	            var baseDay = todaysDay;
+	            
+            } 
+            
+            if (todaysDateNumber + 1 == day) {
+	            eventsArray[i].date = "Tomorrow Night";
+	            
+	            baseDay = todaysDay + 1;
+	            
+            } else {
+            
+				eventsArray[i].date = month + " " + day;
+            }
+                        
+            
+
+        } // end convert time and date
+
+
+        // if no venue has been selected display all
+        // if a venue has been selected only display those
+
+        // only display shows that are happneing this week
+        if (day <= todaysDateNumber + 7) {
+            // if the venue variable hasn't been set
+            
+            	console.log('if statements running');
+            	
+            	                
+                // if the artist name is equal to the show we're recommended do this
+                if (eventsArray[i].artist == "Lord Huron") {
+                    $("#recommended-event").append(
+                        '<div class = "row">' +
+	                        '<div class = "small-12 large-12 columns">' +
+		                        '<h2>This weeks recommended show</h2>' +
+		                        '<p class = "date">' + eventsArray[i].date + '</p>' +
+		                        '<h1 class = "title"><a href = "' + eventsArray[i].purchaseUrl + '" target = "_blank">' + eventsArray[i].artist + '</a></h1>' +
+		                        '<p> <span class = "location">' + eventsArray[i].location + '</span> | <span class = "time">' + eventsArray[i].time + '</span></p>' +
+		                        '<p class = "recommendation">This is where we explain why this is our recommeded show</p>' +
+		                        '<button class = "buyTix"><a href = "' + eventsArray[i].purchaseUrl + '" target = "_blank">Buy Tix</a></button>' +
+		                        '<button class = "youTube"><a href = "https://www.youtube.com/results?search_query=' + eventsArray[i].youTubeQuery + '" target="_blank">View YouTube</a></button>' +
+	                        '</div>' +
+                        '</div>'
+                    );
+                }
+
+                // otherwise do this to the rest
+                else {
+                    // if the time for the event exists do this
+                    if (eventsArray[i].time !== null) {
+                        $("#events-wrapper").append(
+                            '<div class = "row">' +
+	                            '<div class = "small-12 large-12 columns">' +
+		                            '<p class = "date">' + eventsArray[i].date + '</p>' +
+									'<h1 class = "title"><a href = "' + eventsArray[i].purchaseUrl + '" target = "_blank">' + eventsArray[i].artist + '</a></h1>' +
+		                            '<p> <span class = "location">' + eventsArray[i].location + '</span> | <span class = "time">' + eventsArray[i].time + '</span></p>' +
+		                            '<button class = "buyTix"><a href = "' + eventsArray[i].purchaseUrl + '" target = "_blank">Buy Tix</a></button>' +
+		                            '<button class = "youTube"><a href = "https://www.youtube.com/results?search_query=' + eventsArray[i].youTubeQuery + '" target="_blank">View YouTube</a></button>' +
+	                            '</div>' +
+                            '</div>'
+                        );
+                    } 
+                    
+                    // if the time for the event doesn't exist do this
+                    else { 
+                        $("#events-wrapper").append(
+                            '<div class = "row">' +
+	                            '<div class = "small-12 large-12 columns">' +
+		                            '<p class = "date">' + eventsArray[i].date + '</p>' +
+			                        '<h1 class = "title"><a href = "' + eventsArray[i].purchaseUrl + '" target = "_blank">' + eventsArray[i].artist + '</a></h1>' +
+		                            '<p> <span class = "location">' + eventsArray[i].location + '</span></p>' +
+		                            '<button class = "buyTix"><a href = "' + eventsArray[i].purchaseUrl + '" target = "_blank">Buy Tix</a></button>' +
+		                            '<button class = "youTube"><a href = "https://www.youtube.com/results?search_query=' + eventsArray[i].youTubeQuery + '" target="_blank">View YouTube</a></button>' +
+	                            '</div>' +
+                            '</div>'
+                        );
+                    }
+
+                }
+
+        } // end 7 day if statement
+
+    } // end for loop
+
+}; // end callEventsArray
+
+
