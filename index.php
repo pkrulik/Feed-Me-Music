@@ -20,11 +20,8 @@
         
 	    <!-- facebook share stuff -->
 		<meta property="og:title" content="Feed Me Music"/>
-<!-- 		<meta property="og:type" content="website"/> -->
 		<meta property="og:url" content="http://pwm.feedmemusic.co"/>
 		<meta property="og:image" content="http://pwm.feedmemusic.co/img/facebook-share-logo.jpg"/>
-<!-- 		<meta property="og:site_name" content="FeedMeMusic"/> -->
-<!-- 		<meta property="fb:admins" content="USER_ID"/> -->
 		<meta property="og:description" content="Stay in tune with Portland’s live music scene 24/7."/>        
         
         
@@ -83,21 +80,12 @@
 			<p class = "contact">Don't see your show in the list? Hit us up at <a href="mailto:hello@feedmemusic.co?Subject=Music!" onClick="_gaq.push(['_trackEvent', 'Event', 'Email', 'hello@feedmemusic.co']);">hello@feedmemusic.co</a></p>
 		</header>
 		
-		
-<!--
-		<section id = "recommended-event">
-		</section>
--->
-		
-		
 		<section id = "events-wrapper">
 			<!-- events go here -->
 		</section>
 		
 		<footer>
 			<a href="mailto:hello@feedmemusic.co?Subject=Music!" onClick="_gaq.push(['_trackEvent', 'Event', 'Email', 'hello@feedmemusic.co']);">Made with <i class="fa fa-bolt"></i> in Portland, Maine</a>		
-			<a href = "https://www.songkick.com/" target = "_blank" onClick="_gaq.push(['_trackEvent', 'Event', 'Exit', 'Songkick Website']);"><img src="img/songkick-logo.png" alt="songkick-logo" width="114" height="28"></a>
-<!-- 			<p><a href="mailto:hello@feedmemusic.co?Subject=Music!" onClick="_gaq.push(['_trackEvent', 'Event', 'Email', 'hello@feedmemusic.co']);">hello@feedmemusic.co</a></p> -->
 		</footer>	
 		
 		<section id = "background">

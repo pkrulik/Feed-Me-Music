@@ -56,6 +56,7 @@
 	
 // ------------ CONNECT TO OUR DATA	------------ //
 	
+/*
 	
 	// Connect to Songkick and grab their data
 	$.getJSON("http://api.songkick.com/api/3.0/metro_areas/24590/calendar.json?apikey=10OFM6NGN2sk4MA7&jsoncallback=?", function(data) {
@@ -97,6 +98,7 @@
 	    console.log("error");
 	}); // end jsonp call
 	
+*/
 	
 	
 	// https://docs.google.com/spreadsheets/d/1OpCTJqC8uwkyNKRmu6qDe6V13nqxthlta4-waFD4zWQ/pubhtml
@@ -523,7 +525,7 @@ $.getJSON("https://spreadsheets.google.com/feeds/list/0Aqglj65pqAwmdEh4a1otT3lmY
 		// when both json calls are complete do this
 		function outputJson() {
 		
-			if (songkickJsonComplete === 1 && feedmemusicJsonComplete === 1) {
+			if (/* songkickJsonComplete === 1 && */ feedmemusicJsonComplete === 1) {
 		
 				// on load sort the array by it's date    
 				eventsArray.sort(dynamicSort("date"));

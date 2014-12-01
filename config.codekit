@@ -308,6 +308,17 @@
 		"outputPathIsSetByUser": 0,
 		"processed": 0
 		},
+	"\/img\/background8.jpg": {
+		"fileType": 16384,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 570126,
+		"inputAbbreviatedPath": "\/img\/background8.jpg",
+		"outputAbbreviatedPath": "\/img\/background8.jpg",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
 	"\/img\/background9.jpg": {
 		"fileType": 16384,
 		"ignore": 0,
@@ -326,6 +337,17 @@
 		"initialSize": 2921,
 		"inputAbbreviatedPath": "\/img\/facebook-share-logo.jpg",
 		"outputAbbreviatedPath": "\/img\/facebook-share-logo.jpg",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/img\/GF_Pin.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 19834,
+		"inputAbbreviatedPath": "\/img\/GF_Pin.png",
+		"outputAbbreviatedPath": "\/img\/GF_Pin.png",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"processed": 0
