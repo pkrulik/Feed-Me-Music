@@ -46,33 +46,17 @@
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 
-        <!-- Add your site or application content here -->
 		<div class = "loader"></div>
-		
-<!--
-		<a id="hamburger-icon" href="#" title="Menu">
-		  <span class="line line-1"></span>
-		  <span class="line line-2"></span>
-		  <span class="line line-3"></span>
-		</a>
--->
 		
 		<nav>
 			<ul>
 				<li><a href = "#" data-name = "date" class = "active" onClick="_gaq.push(['_trackEvent', 'Event', 'Sort', 'Date']);">Sort by Date</a></li>
 				<li><a href = "#" data-name = "location" onClick="_gaq.push(['_trackEvent', 'Event', 'Sort', 'Venue']);">Sort by Venue</a></li>
 				<li><a href = "#" data-name = "artist" onClick="_gaq.push(['_trackEvent', 'Event', 'Sort', 'Artist']);">Sort by Artist</a></li>
-<!-- 				<li><a href = "#" data-name = "recommended">View Recommended</a></li> -->
 			</ul>
-<!-- 			<ul><a href = "" data-name = "about">About</a></ul> -->
 		</nav>
 		
-		<header>
-			<ul class = "share">
-				<li><a class="share-pop" href="https://www.facebook.com/sharer/sharer.php?u=http://pwm.feedmemusic.co" target="_blank" onClick="_gaq.push(['_trackEvent', 'Event', 'Share', 'Facebook Share']);"><i class="fa fa-facebook"></i></a></li>
-				<li><a class="share-pop" href="https://twitter.com/intent/tweet?text=Stay+in+tune+with+Portland’s+live+music+scene+24/7.+pwm.feedmemusic.co" target="_blank" onClick="_gaq.push(['_trackEvent', 'Event', 'Share', 'Twitter Share']);"><i class="fa fa-twitter"></i></a></li>
-			</ul>
-			
+		<header>			
 			<a href = "index.php"><img id = "main-logo" src="img/logo.png" alt="Feed Me Music logo" width="200" height="200"></a>
 			<h1 id = "sitename"><a href = "index.php">Feed Me Music</a></h1>
 			<h2>Portland, Maine's Live Music Feed</h2>

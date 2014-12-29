@@ -116,9 +116,7 @@ $grey: #999;
 
 body {background:#222;}
 
-#background {position:fixed; width:100%; height:100%; top:0px; left:0px; z-index:-1; border:5px solid $white; }
-
-#background, nav {opacity:.5;
+#background{opacity:.5; position:fixed; width:100%; height:100%; top:0px; left:0px; z-index:-1;
 	&.background1 {background:url(../img/background1.jpg) no-repeat center center; background-size:cover;}
 	&.background2 {background:url(../img/background2.jpg) no-repeat center center; background-size:cover;}
 	&.background3 {background:url(../img/background3.jpg) no-repeat center center; background-size:cover;}
@@ -168,7 +166,7 @@ nav { width:100%; height:100%; margin:0; padding:50px; position:fixed; top:0px; 
 }
 
 
-header { padding:75px 50px 75px 50px; border-bottom:5px solid white;
+header { padding:75px 50px 75px 50px; border-bottom:5px solid $white;
 	
 	img#main-logo {width:15%; margin:0 auto 10px auto; text-align:center; position:relative; display:block; opacity:.75; @include transition(.5s);
 		&:hover {opacity:1; }
@@ -184,16 +182,8 @@ header { padding:75px 50px 75px 50px; border-bottom:5px solid white;
 	p {font-size:18px; line-height:22px; margin:0 auto; text-align:center; color:white;
 		&.dates {font-size:12px;}
 		&.contact { font-size: 14px; margin-top:50px; line-height:22px;
-			a {color:white; @include transition(.2s);
+			a {color:white; @include transition(.2s); text-decoration:underline;
 				&:hover {opacity:.5;}
-			}
-		}
-	}
-	ul.share { margin:0; padding:0; position: absolute; left:25px; top:25px; padding:0; line-height:0px; 
-		li {list-style-type: none;display:inline; font-size:25px; padding:0 5px;
-			&:last-child {margin-right:0px;}
-			a {color:rgba(255,255,255,.5);
-				&:hover {color:rgba(255,255,255,1); @include transition(.2s);}
 			}
 		}
 	}
@@ -201,7 +191,7 @@ header { padding:75px 50px 75px 50px; border-bottom:5px solid white;
 
 .row.recommended-event {border-bottom:5px solid $white; border-top:5px solid $white; background:rgba(200, 200, 300, .5) !important; 
 	p.recommendation {max-width:720px; margin:10px auto 10px auto; width:90%;
-		a {text-decoration:underline; color:#888;
+		a {text-decoration:underline; color:$white;
 			&:hover {color:$white; @include transition(.2s);}
 		}
 	}

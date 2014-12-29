@@ -1,36 +1,14 @@
-	// song kick api key 10OFM6NGN2sk4MA7
-	// artist http://api.songkick.com/api/3.0/artists/{artist_id}/calendar.json?apikey={your_api_key}
-	// metro area http://api.songkick.com/api/3.0/metro_areas/{metro_area_id}/calendar.json?apikey={your_api_key}
-	// pulls all portland concerts: http://api.songkick.com/api/3.0/metro_areas/24590/calendar.json?apikey=10OFM6NGN2sk4MA7
-	
-	//https://www.google.com/maps/place/%20to%20flask%20lounge
-	
-	// TODO: 
-	// 1. add in day of week
-	// 2. if day is today display "today"
-	// 3. link title to something -> COMPLETE
-	// 4. add in filters for each venue -> COMPLETE 
-	// 5. add in powered by songkick footer -> COMPLETE
-	// 6. figure out how to add shows to the array -> COMPLETE
-	// 7. add in share divs --> complete
-	// 8. buy domain --> complete
-	// 9. launch it
-	// 10. tell people about it
-	// 11. link location to google map search --> complete
-	// different layout for sorting by venue -> complete
-	// fix GA tags -> complete
-	// create variables for all HTML --> complete
-	// add in a contact section
-	
-	
-	
-	var eventArray = {},
+	var $win = $(window),
+	    eventArray = {},
 	    eventsArray = [],
 	    hamburger = $('#hamburger-icon'),
 	    navItem = $('nav ul a'),
 	    i = 0,
 	    bodyHeight,
 		eventsWrapperTop,
+		bodyHeight = $('body').height(),
+		eventsWrapperTop = $('#events-wrapper').offset().top,
+		jsonLoaded = 0,
 		
 		// dealing with time and dates
 	    todaysMonthNumber = moment().month(), // ex: 6
@@ -47,73 +25,36 @@
 	    eventDay,
 	    weekday,
 		navName = "date",
-	    longArtist = "";
-		songkickJsonComplete = 0;
+	    longArtist = "",
+		songkickJsonComplete = 0,
 		feedmemusicJsonComplete = 0;
+		
+		
+		
+		$win.ready(function(){
+			
+            checkLoad = setInterval(function(){
+                
+    			if ( jsonLoaded === 1) {
+        			// hide the loader once we have parsed the json
+        			$('.loader').fadeOut('slow');
+        			
+        			clearInterval(checkLoad)
+        			
+    			}
+                
+                console.log('checking')
+                
+            }, 100 );	
+            
+            		
+		});
 
 
 
 	
 // ------------ CONNECT TO OUR DATA	------------ //
 	
-/*
-	
-	// Connect to Songkick and grab their data
-	$.getJSON("http://api.songkick.com/api/3.0/metro_areas/24590/calendar.json?apikey=10OFM6NGN2sk4MA7&jsoncallback=?", function(data) {
-	
-	    $.each(data["resultsPage"]["results"]["event"], function(i) {
-	
-	        // create an object with all the info from the api that we want to use
-	        if (data["resultsPage"]["results"]["event"][i]["type"] === "Concert") {
-		        eventArray = {
-		            date: data["resultsPage"]["results"]["event"][i]["start"]["date"],
-		            youTubeQuery: data["resultsPage"]["results"]["event"][i]["performance"][0]["artist"]["displayName"],
-		            bandName: data["resultsPage"]["results"]["event"][i]["performance"][0]["artist"]["displayName"],
-		            venue: data["resultsPage"]["results"]["event"][i]["venue"]["displayName"],
-		            time: data["resultsPage"]["results"]["event"][i]["start"]["time"],
-		            ticketUrl: data["resultsPage"]["results"]["event"][i]["uri"],
-		            dayNumber: ' ', // ex 14
-		            day: 'Day Placeholder', // ex Thursday
-		            city: data["resultsPage"]["results"]["event"][i]["location"]["city"],
-		            recommended: 0,
-		            recommendation: undefined
-		            
-		        };
-		        
-		        // push that object into an array so we can play with them as a whole
-		        eventsArray.push(eventArray);
-	        } 
-	        
-	    }); // end each
-	        
-		console.log('songkick success')
-	
-		songkickJsonComplete = 1;
-		outputJson();
-		
-		
-		
-	
-	}).fail(function() {
-	    console.log("error");
-	}); // end jsonp call
-	
-*/
-	
-	
-	// https://docs.google.com/spreadsheets/d/1OpCTJqC8uwkyNKRmu6qDe6V13nqxthlta4-waFD4zWQ/pubhtml
-	
-	// working: https://spreadsheets.google.com/feeds/list/0Aqglj65pqAwmdEh4a1otT3lmYnN0TGV1Q2JkdndVUnc/od6/public/basic?hl=en_US&alt=json
-	// mine: https://spreadsheets.google.com/feeds/list/1OpCTJqC8uwkyNKRmu6qDe6V13nqxthlta4-waFD4zWQ/od6/public/basic?hl=en_US&alt=json
-	
-	
-	// Connect to our database and grab our data
-/*
-$.getJSON("https://spreadsheets.google.com/feeds/list/0Aqglj65pqAwmdEh4a1otT3lmYnN0TGV1Q2JkdndVUnc/od6/public/basic?hl=en_US&alt=json", function(data) {
-  //first row "title" column
-  console.log(data.feed.title['type']);
-});
-*/
 
 	$.getJSON("https://spreadsheets.google.com/feeds/list/1OpCTJqC8uwkyNKRmu6qDe6V13nqxthlta4-waFD4zWQ/od6/public/values?alt=json", function(data) {
 	
@@ -165,40 +106,6 @@ $.getJSON("https://spreadsheets.google.com/feeds/list/0Aqglj65pqAwmdEh4a1otT3lmY
 	
 		
 // ------------ END CONNECT TO OUR DATA	------------ //
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		
 		
 		
@@ -269,8 +176,7 @@ $.getJSON("https://spreadsheets.google.com/feeds/list/0Aqglj65pqAwmdEh4a1otT3lmY
 	    		}
 	    			    			
                	if (eventsArray[i].recommended == 1) {
-	               	
-                   	
+
 		    		console.log(eventsArray[i].bandName)
 		    		console.log(eventsArray[i].recommended)
 		    		console.log(eventsArray[i].recommendation)
@@ -281,8 +187,6 @@ $.getJSON("https://spreadsheets.google.com/feeds/list/0Aqglj65pqAwmdEh4a1otT3lmY
 						HtmlRecommendedOpeningWrapper + HtmlDate + HtmlTitle + HtmlLocation + HtmlTime + HtmlRecommendation + HtmlBuyTixButton + HtmlYoutubeButton + HtmlClosingWrapper
                     );
                    	
-                   	
-                   	
                	} else {
                    	
                     $("#events-wrapper").append(
@@ -290,118 +194,7 @@ $.getJSON("https://spreadsheets.google.com/feeds/list/0Aqglj65pqAwmdEh4a1otT3lmY
                     );
                     
                	}
-	    			
-	    			
-	    			
-	    			
-	    						
-				// pick our recommended shows
-/*
-				if (eventsArray[i].bandName === recommendedShow1) {
-	                var HtmlRecommendation = "<p class = 'recommendation'>An explosive dose of Jon Spencer will remedy any Tuesday blues. </p>";
-					console.log('found jackson')
-				}		
-				
-				if (eventsArray[i].bandName === recommendedShow2) {
-	                var HtmlRecommendation = "<p class = 'recommendation'>Two dudes and a three string guitar walk into a bar. Port City, to be precise. </p>";
-					console.log('found jackson')
-				}	
-				
-				if (eventsArray[i].bandName === recommendedShow3) {
-	                var HtmlRecommendation = "<p class = 'recommendation'>If indeed you are swayed by the opinions of two boobs that love a live jam, go see this show. If your ears don’t reel in a cooler’s worth of unreal melodies, we’ll eat our bucket hats.</p>";
-				}		
-				
-				
-				if (eventsArray[i].bandName === recommendedShow4) {
-	                var HtmlRecommendation = "<p class = 'recommendation'>Like divine magic, Model Airplane increases the amount of soul in any room they enter sevenfold. No bullshit. </p>";
-				}		
-*/
-	            
-	            
-	            // event must have Portland, Maine set as the location
-	            // event must have a venue set
-/*
-	            if (0 === 0) {
-	                
-		            if (navName === "date" || navName === "artist") {  
-		                
-		                if (eventsArray[i].bandName === recommendedShow1 || eventsArray[i].bandName === recommendedShow2 || eventsArray[i].bandName === recommendedShow3 || eventsArray[i].bandName === recommendedShow4) {
-		                    
-		                    $("#events-wrapper").append(
-								HtmlRecommendedOpeningWrapper + HtmlDate + HtmlTitle + HtmlLocation + HtmlTime + HtmlRecommendation + HtmlBuyTixButton + HtmlYoutubeButton + HtmlClosingWrapper
-		                    );
-		                    
-		                } 
-		                
-		                // handle all of the rest
-		                else {	
-		                    // if the time for the event exists do this
-		                    if (eventsArray[i].time !== null) {
-		                        $("#events-wrapper").append(
-									HtmlOpeningWrapper + HtmlDate + HtmlTitle + HtmlLocation + HtmlTime + HtmlPrice + HtmlBuyTixButton + HtmlYoutubeButton + HtmlClosingWrapper
-		                        );
-		                    } 
-		                    
-		                    // if the time for the event doesn't exist do this
-		                    else { 
-		                        $("#events-wrapper").append(
-									HtmlOpeningWrapper + HtmlDate + HtmlTitle + HtmlLocation + HtmlBuyTixButton + HtmlYoutubeButton + HtmlClosingWrapper
-		                        );
-		                    }
-		
-		                }
-		            }
-*/
-
-
-
-
-	                
-
-
-/*
-					// if the sort by venue was selected the html should prioritize the venue name                
-		            else if (navName === "location") {
-		            	console.log("navName is location");
-		            	
-							HtmlTitle = '<h1 class = "title"><a href = "https://www.google.com/maps/place/' + eventsArray[i].location + '" target="_blank"> ' + eventsArray[i].location + '</a></h1>',
-			    			HtmlLocation = '<p> <span class = "location"><a href = "' + eventsArray[i].purchaseUrl + '" target = "_blank" onClick="_gaq.push([&#39;_trackEvent&#39;, &#39;Event&#39;, &#39;Buy&#39;, &#39;' + eventsArray[i].artist + '&#39;]);">' + eventsArray[i].artist + '</a></span>';
-							
-			                // recommended event
-			                if (eventsArray[i].artist === recommendedShow1 || eventsArray[i].artist === recommendedShow2) {
-			                    		                    
-			                    $("#events-wrapper").append(
-									HtmlRecommendedOpeningWrapper + HtmlDate + HtmlTitle + HtmlLocation + HtmlTime + HtmlRecommendation + HtmlBuyTixButton + HtmlYoutubeButton + HtmlClosingWrapper
-			                    );
-			                    
-			                } 
-		                   
-		                    // if the time for the event exists do this
-		                    if (eventsArray[i].time !== null) {
-		                        $("#events-wrapper").append(
-									HtmlOpeningWrapper + HtmlDate + HtmlTitle + HtmlLocation + HtmlTime + HtmlBuyTixButton + HtmlYoutubeButton + HtmlClosingWrapper
-		                        );
-		                    } 
-		                    
-		                    // if the time for the event doesn't exist do this
-		                    else { 
-		                        $("#events-wrapper").append(
-									HtmlOpeningWrapper + HtmlDate + HtmlTitle + HtmlLocation + HtmlBuyTixButton + HtmlYoutubeButton + HtmlClosingWrapper
-		                        );
-		                    }
-		            
-		                
-		            } 
-		            
-		            else if (navName === "recommended") {
-		                alert("Recommended")
-		            }
-		                
-	                
-	                
-	                
-	            }
-*/
+	    				    						
 	                       
 				// find titles that are too long for mobile and give them a class so we can decrease
 				// their size when the screen is too small		        
@@ -432,8 +225,6 @@ $.getJSON("https://spreadsheets.google.com/feeds/list/0Aqglj65pqAwmdEh4a1otT3lmY
 	   
 	   
 	   
-		bodyHeight = $('body').height(),
-		eventsWrapperTop = $('#events-wrapper').offset().top;
 		
 		
 		
@@ -558,8 +349,8 @@ $.getJSON("https://spreadsheets.google.com/feeds/list/0Aqglj65pqAwmdEh4a1otT3lmY
 			
 				outputHTML(navName);
 				
-				// hide the loader once we have parsed the json
-				$('.loader').fadeOut('slow');
+				// let us know when this has loaded
+				jsonLoaded = 1;
 				
 			}
 		}

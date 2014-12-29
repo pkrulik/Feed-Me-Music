@@ -82,41 +82,38 @@ body {
   background: #222; }
 
 #background {
+  opacity: .5;
   position: fixed;
   width: 100%;
   height: 100%;
   top: 0px;
   left: 0px;
-  z-index: -1;
-  border: 5px solid #fff; }
-
-#background, nav {
-  opacity: .5; }
-  #background.background1, nav.background1 {
+  z-index: -1; }
+  #background.background1 {
     background: url(../img/background1.jpg) no-repeat center center;
     background-size: cover; }
-  #background.background2, nav.background2 {
+  #background.background2 {
     background: url(../img/background2.jpg) no-repeat center center;
     background-size: cover; }
-  #background.background3, nav.background3 {
+  #background.background3 {
     background: url(../img/background3.jpg) no-repeat center center;
     background-size: cover; }
-  #background.background4, nav.background4 {
+  #background.background4 {
     background: url(../img/background4.jpg) no-repeat center bottom;
     background-size: cover; }
-  #background.background5, nav.background5 {
+  #background.background5 {
     background: url(../img/background5.jpg) no-repeat center bottom;
     background-size: cover; }
-  #background.background6, nav.background6 {
+  #background.background6 {
     background: url(../img/background6.jpg) no-repeat center bottom;
     background-size: cover; }
-  #background.background7, nav.background7 {
+  #background.background7 {
     background: url(../img/background7.jpg) no-repeat center bottom;
     background-size: cover; }
-  #background.background8, nav.background8 {
+  #background.background8 {
     background: url(../img/background8.jpg) no-repeat center bottom;
     background-size: cover; }
-  #background.background9, nav.background9 {
+  #background.background9 {
     background: url(../img/background9.jpg) no-repeat center bottom;
     background-size: cover; }
 
@@ -200,7 +197,7 @@ nav {
 
 header {
   padding: 75px 50px 75px 50px;
-  border-bottom: 5px solid white; }
+  border-bottom: 5px solid #fff; }
   header img#main-logo {
     width: 15%;
     margin: 0 auto 10px auto;
@@ -263,33 +260,10 @@ header {
         -moz-transition: all 0.2s ease-in-out;
         -o-transition: all 0.2s ease-in-out;
         -ms-transition: all 0.2s ease-in-out;
-        transition: all 0.2s ease-in-out; }
+        transition: all 0.2s ease-in-out;
+        text-decoration: underline; }
         header p.contact a:hover {
           opacity: .5; }
-  header ul.share {
-    margin: 0;
-    padding: 0;
-    position: absolute;
-    left: 25px;
-    top: 25px;
-    padding: 0;
-    line-height: 0px; }
-    header ul.share li {
-      list-style-type: none;
-      display: inline;
-      font-size: 25px;
-      padding: 0 5px; }
-      header ul.share li:last-child {
-        margin-right: 0px; }
-      header ul.share li a {
-        color: rgba(255, 255, 255, 0.5); }
-        header ul.share li a:hover {
-          color: white;
-          -webkit-transition: all 0.2s ease-in-out;
-          -moz-transition: all 0.2s ease-in-out;
-          -o-transition: all 0.2s ease-in-out;
-          -ms-transition: all 0.2s ease-in-out;
-          transition: all 0.2s ease-in-out; }
 
 .row.recommended-event {
   border-bottom: 5px solid #fff;
@@ -301,7 +275,7 @@ header {
     width: 90%; }
     .row.recommended-event p.recommendation a {
       text-decoration: underline;
-      color: #888; }
+      color: #fff; }
       .row.recommended-event p.recommendation a:hover {
         color: #fff;
         -webkit-transition: all 0.2s ease-in-out;
