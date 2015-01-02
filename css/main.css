@@ -297,11 +297,10 @@ header {
     margin: 0; }
     .row .columns h1.title {
       font-size: 60px;
-      margin: 0;
       padding: 0;
       color: #fff;
-      line-height: 62px;
-      margin: 8px auto;
+      line-height: 72px;
+      margin: 8px auto 15px auto;
       max-width: 500px; }
       .row .columns h1.title a {
         color: white;
@@ -330,7 +329,7 @@ header {
       padding: 0;
       border: 3px solid #fff;
       background: none;
-      margin: 20px 5px 0 0; }
+      margin: 30px 5px 0 0; }
       .row .columns .button a {
         color: white;
         font-size: 15px;
@@ -403,14 +402,16 @@ p::moz-selection, a::moz-selection, span::moz-selection, h1::moz-selection, h2::
         font-size: 30px;
         line-height: 40px; }
 
+  p.date {
+    margin-bottom: 10px !important; }
+
   h1.title {
     max-width: 90%;
-    margin: 8px auto !important; }
+    font-size: 45px !important;
+    line-height: 60px !important; }
     h1.title.longword {
       margin: 0px auto 8px auto !important; }
       h1.title.longword a {
-        font-size: 45px;
-        line-height: 25px;
         margin: 0;
         padding: 0; } }
 /* ==========================================================================

@@ -184,7 +184,7 @@
 		    		HtmlRecommendation = "<p class = 'recommendation'>" + eventsArray[i].recommendation + "</p>";
                     
                     $("#events-wrapper").append(
-						HtmlRecommendedOpeningWrapper + HtmlDate + HtmlTitle + HtmlLocation + HtmlTime + HtmlRecommendation + HtmlBuyTixButton + HtmlYoutubeButton + HtmlClosingWrapper
+						HtmlRecommendedOpeningWrapper + HtmlDate + HtmlTitle + HtmlLocation + HtmlTime + HtmlPrice + HtmlRecommendation + HtmlBuyTixButton + HtmlYoutubeButton + HtmlClosingWrapper
                     );
                    	
                	} else {
