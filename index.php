@@ -47,28 +47,43 @@
         <![endif]-->
 
 		<div class = "loader"></div>
-		
-		<nav>
-			<ul>
-				<li><a href = "#" data-name = "date" class = "active" onClick="_gaq.push(['_trackEvent', 'Event', 'Sort', 'Date']);">Sort by Date</a></li>
-				<li><a href = "#" data-name = "location" onClick="_gaq.push(['_trackEvent', 'Event', 'Sort', 'Venue']);">Sort by Venue</a></li>
-				<li><a href = "#" data-name = "artist" onClick="_gaq.push(['_trackEvent', 'Event', 'Sort', 'Artist']);">Sort by Artist</a></li>
-			</ul>
-		</nav>
-		
+				
 		<header>			
 			<a href = "index.php"><img id = "main-logo" src="img/logo.png" alt="Feed Me Music logo" width="200" height="200"></a>
 			<h1 id = "sitename"><a href = "index.php">Feed Me Music</a></h1>
 			<h2>Portland, Maine's Live Music Feed</h2>
 			<p class = "dates"><span class = "today">Today, July 17th</span> - <span class = "last-day">Thursday, July 24th</span>
-			<p class = "contact">Don't see your show in the list? Hit us up at <a href="mailto:hello@feedmemusic.co?Subject=Music!" onClick="_gaq.push(['_trackEvent', 'Event', 'Email', 'hello@feedmemusic.co']);">hello@feedmemusic.co</a></p>
+<!-- 			<p class = "sign-up">Want the shows emailed to you each week?<span class = "break">Sign up for our <a href = "#footer">newsletter</a>.</span> </p> -->
 		</header>
 		
 		<section id = "events-wrapper">
 			<!-- events go here -->
 		</section>
 		
-		<footer>
+		<footer id = "footer">
+    		
+            <!-- Begin MailChimp Signup Form -->
+<!--             <link href="//cdn-images.mailchimp.com/embedcode/classic-081711.css" rel="stylesheet" type="text/css"> -->
+            <div id="mc_embed_signup">
+                <form action="//feedmemusic.us9.list-manage.com/subscribe/post?u=bdecf609ddf89e01fc0900273&amp;id=a44fa0cbe7" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+                    <div id="mc_embed_signup_scroll">
+                	<h4>Want the shows emailed to you each week? Sign up for our newsletter.</h4>
+                <div class="mc-field-group">
+                	<input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL" placeholder = "Email Address">
+                </div>
+                	<div id="mce-responses" class="clear">
+                		<div class="response" id="mce-error-response" style="display:none"></div>
+                		<div class="response" id="mce-success-response" style="display:none">yeah yeah</div>
+                	</div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                    <div style="position: absolute; left: -5000px;"><input type="text" name="b_bdecf609ddf89e01fc0900273_a44fa0cbe7" tabindex="-1" value=""></div>
+                    <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+                    </div>
+                </form>
+            </div>
+            <script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script><script type='text/javascript'>(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
+            <!--End mc_embed_signup-->	
+            		
+			<p class = "contact">Don't see your show in the list? Hit us up at <a href="mailto:hello@feedmemusic.co?Subject=Music!" onClick="_gaq.push(['_trackEvent', 'Event', 'Email', 'hello@feedmemusic.co']);">hello@feedmemusic.co</a></p>
 			<a href="mailto:hello@feedmemusic.co?Subject=Music!" onClick="_gaq.push(['_trackEvent', 'Event', 'Email', 'hello@feedmemusic.co']);">Made with <i class="fa fa-bolt"></i> in Portland, Maine</a>		
 		</footer>	
 		
@@ -84,6 +99,9 @@
         <script src="js/jquery.scrollTo-1.4.3.1.min.js"></script>
         <script src="js/moment.js"></script>
         <script src="js/main.js"></script>
+        
+        
+        
 
     </body>
 </html>

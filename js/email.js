@@ -7,7 +7,6 @@
 	    bodyHeight,
 		eventsWrapperTop,
 		bodyHeight = $('body').height(),
-		eventsWrapperTop = $('#events-wrapper').offset().top,
 		jsonLoaded = 0,
 		
 		// dealing with time and dates
@@ -145,24 +144,54 @@
 	    		
 	    		newEventDate = moment(eventsArray[i].date).format('MMMM Do');
 	    		
+/*
+            	<tr>
+                	<td align="center" valign="top">
+                        <table border="0" cellpadding="0" cellspacing="0" width="100%" id="templateBody">
+                    		<br><br><br>
+                            <tr>
+                                <td valign="top" class="bodyContent" mc:edit="body_content">
+
+                            		<tr>
+                                		<p class="date">Wednesday, January 7th</p>
+                                		<h1 class="title longword"><a href="https://onelongfellowsquare.com/event-registration/?ee=171" onclick="_gaq.push(['_trackEvent', 'Event', 'Buy', 'Naughty Professor Title Link']);" target="_blank">Naughty Professor</a></h1>
+                                		<p><span class="location"><a href="https://www.google.com/maps/place/One%20Longfellow%20Square" target="_blank">One Longfellow Square</a></span> | <span class="time">8:00pm</span> | <span class="time">$10.00</span></p>
+                                        <br>
+                            		</tr>
+                            		
+                            		<tr>
+                                		<td align = "right" valign="top" style = "padding-right:2px; width:50%;">
+                                			<a class="button" href="https://onelongfellowsquare.com/event-registration/?ee=171" onclick="_gaq.push(['_trackEvent', 'Event', 'Buy', 'Naughty Professor Buy Tix Button']);" target="_blank">Buy Tix</a>
+                                		</td>
+                                		<td align = "left" valign="top" style = "padding-left:2px; width:50%;">
+                                			<a class="button" href="https://www.youtube.com/results?search_query=Naughty%20Professor%20music%20Music" onclick="_gaq.push(['_trackEvent', 'Event', 'Youtube Button', 'Naughty Professor View Youtube Button']);" target="_blank">View YouTube</a>
+                                		</td>
+                            		</tr>
+
+                                </td>
+                            </tr>
+                            
+                        </table>
+
+                    </td>
+                </tr>
+*/
 	    		
-	    		var recommendedShow1 = "Heavy Trash",
-	    			recommendedShow2 = "Jeff the Brotherhood",
-	    			recommendedShow3 = "Endless Jags",
-	    			recommendedShow4 = "Model Airplane",
-	    			
-	    			HtmlRecommendedOpeningWrapper = '<div class="row recommended-event"><div class = "small-12 large-12 columns"><h2>Recommended show</h2>',
+	    		
+	    		
+	    		
+	    		var HtmlRecommendedOpeningWrapper = '<div class="row recommended-event"><div class = "small-12 large-12 columns"><h2>Recommended show</h2>',
 	    			HtmlOpeningWrapper = '<div class="row"><div class = "small-12 large-12 columns">',
 	    			HtmlClosingWrapper = '</div></div>',
-	    			HtmlDate = '<p class = "date">' + eventsArray[i].day + ", "+ newEventDate + '</p>',
+	    			HtmlDate = '<p class = "date">' + eventsArray[i].day + ", "+ newEventDate + '</p><br>',
 	    			HtmlTitle = '<h1 class = "title"><a href = "' + eventsArray[i].ticketUrl + '" target = "_blank" onClick="_gaq.push([&#39;_trackEvent&#39;, &#39;Event&#39;, &#39;Buy&#39;, &#39;' + eventsArray[i].bandName + ' Title Link&#39;]);">' + eventsArray[i].bandName + '</a></h1>',
 	    			HtmlLocation = '<p> <span class = "location"><a href = "https://www.google.com/maps/place/' + eventsArray[i].venue + '" target="_blank"> ' + eventsArray[i].venue + '</a></span>',
 					HtmlTime =  ' | <span class = "time">' + "TBD" + '</span>',
 					HtmlPrice =  ' | <span class = "time">' + "TBD" + '</span>',
-	    			HtmlBuyTixButton = '<div class = "buyTix button"><a href = "' + eventsArray[i].ticketUrl + '" target = "_blank" onClick="_gaq.push([&#39;_trackEvent&#39;, &#39;Event&#39;, &#39;Buy&#39;, &#39;' + eventsArray[i].bandName + ' Buy Tix Button&#39;]);">Buy Tix</a></div>',
-	    			HtmlYoutubeButton = '<div class = "youTube button"><a href = "https://www.youtube.com/results?search_query=' + eventsArray[i].youTubeQuery + ' Music" target="_blank" onClick="_gaq.push([&#39;_trackEvent&#39;, &#39;Event&#39;, &#39;Youtube Button&#39;, &#39;' + eventsArray[i].bandName + ' View Youtube Button&#39;]);">View YouTube</a></div>',	
-	    			HtmlRecommendation;
-	    		
+	    			HtmlBuyTixButton = '<a class = "button" href = "' + eventsArray[i].ticketUrl + '" target = "_blank" onClick="_gaq.push([&#39;_trackEvent&#39;, &#39;Event&#39;, &#39;Buy&#39;, &#39;' + eventsArray[i].bandName + ' Buy Tix Button&#39;]);">Buy Tix</a>',
+	    			HtmlYoutubeButton = '<a class = "button" href = "https://www.youtube.com/results?search_query=' + eventsArray[i].youTubeQuery + ' Music" target="_blank" onClick="_gaq.push([&#39;_trackEvent&#39;, &#39;Event&#39;, &#39;Youtube Button&#39;, &#39;' + eventsArray[i].bandName + ' View Youtube Button&#39;]);">View YouTube</a>',	
+	    			HtmlRecommendation;		
+	    			
 	    		
 	    		
 	    		// if time exists
@@ -175,25 +204,12 @@
 					HtmlPrice =  ' | <span class = "time">' + eventsArray[i].price + '</span>';
 	    		}
 	    			    			
-               	if (eventsArray[i].recommended == 1) {
+                   	
+                $("#footer").before(
 
-		    		console.log(eventsArray[i].bandName)
-		    		console.log(eventsArray[i].recommended)
-		    		console.log(eventsArray[i].recommendation)
-		    		
-		    		HtmlRecommendation = "<p class = 'recommendation'>" + eventsArray[i].recommendation + "</p>";
+                    '<tr><td align=center valign=top><table border=0 cellpadding=0 cellspacing=0 width=100% id=templateBody><br><br><br><br><br><tr><td valign=top class=bodyContent mc:edit=body_content><tr>' + HtmlDate + HtmlTitle + HtmlLocation + HtmlTime + HtmlPrice + '<tr><br><br><td align=right valign=top style=padding-right:2px;width:50%>' + HtmlBuyTixButton + '<td align=left valign=top style=padding-left:2px;width:50%>' + HtmlYoutubeButton + '</table>'
+                );
                     
-                    $("#events-wrapper").append(
-						HtmlRecommendedOpeningWrapper + HtmlDate + HtmlTitle + HtmlLocation + HtmlTime + HtmlPrice + HtmlRecommendation + HtmlBuyTixButton + HtmlYoutubeButton + HtmlClosingWrapper
-                    );
-                   	
-               	} else {
-                   	
-                    $("#events-wrapper").append(
-						HtmlOpeningWrapper + HtmlDate + HtmlTitle + HtmlLocation + HtmlTime + HtmlPrice + HtmlBuyTixButton + HtmlYoutubeButton + HtmlClosingWrapper
-                    );
-                    
-               	}
 	    				    						
 	                       
 				// find titles that are too long for mobile and give them a class so we can decrease

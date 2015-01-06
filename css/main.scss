@@ -111,10 +111,11 @@ $translateX: 0px;
 $grey: #999;
  
 
+.break {display:block;}
 
 
 
-body {background:#222;}
+body {background:#222; font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif; color:$white;}
 
 #background{opacity:.5; position:fixed; width:100%; height:100%; top:0px; left:0px; z-index:-1;
 	&.background1 {background:url(../img/background1.jpg) no-repeat center center; background-size:cover;}
@@ -130,7 +131,7 @@ body {background:#222;}
 
 .loader {width:100%; height:100%; display:block; background:$white; z-index:10000; position:fixed; top:0; left:0;}
 
-
+.button:focus {outline:0;}
 nav { width:100%; height:100%; margin:0; padding:50px; position:fixed; top:0px; left:0px; z-index:1000; opacity:0; border:5px solid $white; @include transition(.4s); visibility:hidden;
 	&.active {opacity:1; visibility:visible;}
 	ul {margin:40px auto 0 auto; text-align:center;
@@ -181,8 +182,8 @@ header { padding:75px 50px 75px 50px; border-bottom:5px solid $white;
 	h2 {font-size:18px; line-height:22px; margin:0 auto; text-align:center; color:white;}
 	p {font-size:18px; line-height:22px; margin:0 auto; text-align:center; color:white;
 		&.dates {font-size:12px;}
-		&.contact { font-size: 14px; margin-top:50px; line-height:22px;
-			a {color:white; @include transition(.2s); text-decoration:underline;
+		&.sign-up { font-size: 14px; margin:25px 0 0px 0; line-height:22px;
+			a {color:white; @include transition(.2s); text-decoration:underline; font-size:14px;
 				&:hover {opacity:.5;}
 			}
 		}
@@ -227,13 +228,35 @@ header { padding:75px 50px 75px 50px; border-bottom:5px solid $white;
 	}
 }
 
-footer {padding:20px 20px; position:relative; 
+footer {padding:50px 20px; position:relative;  border-top:5px solid $white; background:rgba(200, 200, 300, .5) !important; 
 	img {@include transition(.2s); opacity:.2; float:left; margin-bottom:0px; position:absolute; bottom:15px; left:20px;
 		&:hover {opacity:1;}
 	}
 	a {color:white; font-size:12px; text-align:center; margin:0 !important; color:white; display:block; @include transition(.2s);
 		&:hover {opacity:.5; color:white;}
 	}
+	.button {padding:5px 8px;  border:3px solid $white; background:none; margin-top:20px;
+		a {color:white; font-size:15px; display:block; height:100%; width:100%; }
+		&:hover {background:$white; color:$grey;}
+	}
+	p {font-size:18px; line-height:22px; margin:0 auto; text-align:center; color:white;
+		&.contact { font-size: 14px; margin:25px 0 40px 0; line-height:22px;
+			a {color:white; @include transition(.2s); text-decoration:underline; font-size:14px;
+				&:hover {opacity:.5;}
+			}
+		}
+	}
+	
+    /* MAILCHIMP FORM */
+    #mc_embed_signup {width:40%; margin:0 auto; text-align:center; max-width:450px;
+        .indicates-required {color:$white !important;}
+        h4 {color:$white; font-size:20px; margin-bottom:20px;}
+        #mce-responses {line-height:20px; margin-top:20px;}
+        .email {margin:0;}
+        div.mce_inline_error {color:$white !important; background:none !important; margin:10px 0 0 0;}
+    }
+	
+	
 }
 
 
@@ -276,10 +299,17 @@ p, a, span, h1, h2, h3, div {
 		}
 	}
 
-	
+    footer {
+    	
+        /* MAILCHIMP FORM */
+        #mc_embed_signup {width:80%;}
+    	
+    	
+    }
 	
 
 }
+
 
 
 

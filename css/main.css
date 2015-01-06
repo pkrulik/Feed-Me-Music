@@ -78,8 +78,13 @@ textarea {
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
+.break {
+  display: block; }
+
 body {
-  background: #222; }
+  background: #222;
+  font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+  color: #fff; }
 
 #background {
   opacity: .5;
@@ -126,6 +131,9 @@ body {
   position: fixed;
   top: 0;
   left: 0; }
+
+.button:focus {
+  outline: 0; }
 
 nav {
   width: 100%;
@@ -250,19 +258,20 @@ header {
     color: white; }
     header p.dates {
       font-size: 12px; }
-    header p.contact {
+    header p.sign-up {
       font-size: 14px;
-      margin-top: 50px;
+      margin: 25px 0 0px 0;
       line-height: 22px; }
-      header p.contact a {
+      header p.sign-up a {
         color: white;
         -webkit-transition: all 0.2s ease-in-out;
         -moz-transition: all 0.2s ease-in-out;
         -o-transition: all 0.2s ease-in-out;
         -ms-transition: all 0.2s ease-in-out;
         transition: all 0.2s ease-in-out;
-        text-decoration: underline; }
-        header p.contact a:hover {
+        text-decoration: underline;
+        font-size: 14px; }
+        header p.sign-up a:hover {
           opacity: .5; }
 
 .row.recommended-event {
@@ -343,8 +352,11 @@ header {
           color: #999; }
 
 footer {
-  padding: 20px 20px;
-  position: relative; }
+  padding: 50px 20px;
+  position: relative;
+  border-top: 5px solid #fff;
+  background: rgba(200, 200, 255, 0.5) !important;
+  /* MAILCHIMP FORM */ }
   footer img {
     -webkit-transition: all 0.2s ease-in-out;
     -moz-transition: all 0.2s ease-in-out;
@@ -374,6 +386,61 @@ footer {
     footer a:hover {
       opacity: .5;
       color: white; }
+  footer .button {
+    padding: 5px 8px;
+    border: 3px solid #fff;
+    background: none;
+    margin-top: 20px; }
+    footer .button a {
+      color: white;
+      font-size: 15px;
+      display: block;
+      height: 100%;
+      width: 100%; }
+    footer .button:hover {
+      background: #fff;
+      color: #999; }
+  footer p {
+    font-size: 18px;
+    line-height: 22px;
+    margin: 0 auto;
+    text-align: center;
+    color: white; }
+    footer p.contact {
+      font-size: 14px;
+      margin: 25px 0 40px 0;
+      line-height: 22px; }
+      footer p.contact a {
+        color: white;
+        -webkit-transition: all 0.2s ease-in-out;
+        -moz-transition: all 0.2s ease-in-out;
+        -o-transition: all 0.2s ease-in-out;
+        -ms-transition: all 0.2s ease-in-out;
+        transition: all 0.2s ease-in-out;
+        text-decoration: underline;
+        font-size: 14px; }
+        footer p.contact a:hover {
+          opacity: .5; }
+  footer #mc_embed_signup {
+    width: 40%;
+    margin: 0 auto;
+    text-align: center;
+    max-width: 450px; }
+    footer #mc_embed_signup .indicates-required {
+      color: #fff !important; }
+    footer #mc_embed_signup h4 {
+      color: #fff;
+      font-size: 20px;
+      margin-bottom: 20px; }
+    footer #mc_embed_signup #mce-responses {
+      line-height: 20px;
+      margin-top: 20px; }
+    footer #mc_embed_signup .email {
+      margin: 0; }
+    footer #mc_embed_signup div.mce_inline_error {
+      color: #fff !important;
+      background: none !important;
+      margin: 10px 0 0 0; }
 
 .scroll-to-top {
   position: fixed;
@@ -413,7 +480,12 @@ p::moz-selection, a::moz-selection, span::moz-selection, h1::moz-selection, h2::
       margin: 0px auto 8px auto !important; }
       h1.title.longword a {
         margin: 0;
-        padding: 0; } }
+        padding: 0; }
+
+  footer {
+    /* MAILCHIMP FORM */ }
+    footer #mc_embed_signup {
+      width: 80%; } }
 /* ==========================================================================
    Helper classes
    ========================================================================== */
