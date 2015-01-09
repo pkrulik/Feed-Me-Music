@@ -42,7 +42,7 @@
 			* @theme page
 			*/
 			body, #bodyTable{
-				/*@editable*/ background-color:#222222;
+				/*@editable*/ background-color:#879284;
 			}
 
 			/**
@@ -475,7 +475,7 @@
     <body leftmargin="0" marginwidth="0" topmargin="0" marginheight="0" offset="0">
     	<center>
 
-            <div style="background-color:#222222;">
+            <div style="background-color:#879284;">
                 <!--[if gte mso 9]>
                 <v:background xmlns:v="urn:schemas-microsoft-com:vml" fill="t">
                 <v:fill type="tile" src="http://feedmemusic.co/img/background3.jpg" color="#444444"/>
@@ -484,7 +484,7 @@
       
               	<table align="center" border="0" cellpadding="0" cellspacing="0" height="100%" width="100%" id="bodyTable">
                 	<tr>
-                    	<td align="center" valign="top" id="bodyCell">
+                    	<td align="center" valign="top" id="bodyCell" background="http://feedmemusic.co/img/email-background-2.jpg" style = "background-position:bottom; background-repeat:repeat-x;">
                         	<!-- BEGIN TEMPLATE // -->
                         	<table border="0" cellpadding="0" cellspacing="0" id="templateContainer">
                             	<tr>
@@ -505,7 +505,7 @@
                                 </tr>
                             	
                             	<tr id = "header">
-                                	<td align="center" valign="top" background="http://feedmemusic.co/img/background6.jpg" style = "background-size:cover; background-position:bottom;">
+                                	<td align="center" valign="top" >
                                         <table border="0" cellpadding="0" cellspacing="0" width="100%" id="templateHeader">
                                             <tr>
                                                 <td valign="top" class="headerContent" background="">
@@ -542,6 +542,7 @@
                                         <tr>
                                     		<td align = "center" valign="top" style = "padding-left:2px; width:100%;">
                                     			<a class="button" style = "font-size:14px;"href="http://feedmemusic.co/" target="_blank">feedmemusic.co/</a>
+                                                <br><br><br>
                                     		</td>
                                         </tr>
                                     </table>

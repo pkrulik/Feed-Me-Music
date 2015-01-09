@@ -339,6 +339,28 @@
 		"outputPathIsSetByUser": 0,
 		"processed": 0
 		},
+	"\/img\/email-background-2.jpg": {
+		"fileType": 16384,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 36430,
+		"inputAbbreviatedPath": "\/img\/email-background-2.jpg",
+		"outputAbbreviatedPath": "\/img\/email-background-2.jpg",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/img\/email-background.jpg": {
+		"fileType": 16384,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 188639,
+		"inputAbbreviatedPath": "\/img\/email-background.jpg",
+		"outputAbbreviatedPath": "\/img\/email-background.jpg",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
 	"\/img\/email-logo.png": {
 		"fileType": 32768,
 		"ignore": 0,
